@@ -1,0 +1,47 @@
+lightdm
+lightdm-gtk-greeter
+bspwm
+sxhkd
+sudo
+gvfs
+git
+bitwarden
+xdg-user-dirs
+nvidia-dkms
+xf86-video-intel
+polybar
+rofi
+dunst
+zsh
+go
+rust
+arandr
+xorg-xinput
+nitrogen
+picom
+fzf
+the_silver_searcher
+natilus
+autofs
+
+
+# AUR
+nerd-fonts-complete
+
+
+# Misc
+Starship (curl -sS https://starship.rs/install.sh | sh)
+
+
+
+#
+# install bumblebee and enable the service
+# https://wiki.archlinux.org/index.php/Bumblebee#Installation
+# adding xf86-video-intel to hopefully enable external hdmi monitor
+sudo pacman -S nvidia bumblebee mesa xf86-video-intel
+
+# add user to bumblebee group
+sudo gpasswd -a <user name> bumblebee
+
+# enable bumblebee service
+sudo systemctl enable bumblebeed.service

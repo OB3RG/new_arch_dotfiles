@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+set -u
+
+product=$(dmesg | sed -nr 's/.* Hardware name: ([^/]*).*/\1/p' | head -n 1)
+
+if [ -f /sys/devices/virtual/dmi/id/product_name ]; then
+    product=$(cat /sys/devices/virtual/dmi/id/product_name)
+fi
+
+setxkbmap -option caps:escape
+setxkbmap -option terminate:ctrl_alt_bksp
+setxkbmap -layout us,se -option grp:rshift_toggle
+
+case "$product" in
+    "XPS 15 9510")
+        xinput set-prop "DLL0945:00 04F3:311C Touchpad" "libinput Tapping Enabled" 1
+        xinput set-prop "DLL0945:00 04F3:311C Touchpad" "libinput Click Method Enabled" 0 1
+        #xinput set-prop "DLL0945:00 04F3:311C Touchpad" "libinput Accel Speed" 1
+        ;;
+esac

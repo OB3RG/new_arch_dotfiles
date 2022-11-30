@@ -1,0 +1,7 @@
+source ~/.xutils
+
+nitrogen --restore &
+sxhkd &
+dunst &
+picom &
+exec bspwm
